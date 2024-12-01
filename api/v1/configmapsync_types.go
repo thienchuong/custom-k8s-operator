@@ -25,17 +25,14 @@ import (
 
 // ConfigMapSyncSpec defines the desired state of ConfigMapSync.
 type ConfigMapSyncSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of ConfigMapSync. Edit configmapsync_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	SourceNamespace      string `json:"sourceNamespace"`
+	DestinationNamespace string `json:"destinationNamespace"`
+	ConfigMapName        string `json:"configMapName"`
 }
 
 // ConfigMapSyncStatus defines the observed state of ConfigMapSync.
 type ConfigMapSyncStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	LastSyncTime metav1.Time `json:"lastSyncTime"`
 }
 
 // +kubebuilder:object:root=true
@@ -45,9 +42,8 @@ type ConfigMapSyncStatus struct {
 type ConfigMapSync struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   ConfigMapSyncSpec   `json:"spec,omitempty"`
-	Status ConfigMapSyncStatus `json:"status,omitempty"`
+	Spec              ConfigMapSyncSpec   `json:"spec,omitempty"`
+	Status            ConfigMapSyncStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

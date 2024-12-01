@@ -24,29 +24,29 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
-	mygroupv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
+	appsv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
 )
 
-// MyKindReconciler reconciles a MyKind object
-type MyKindReconciler struct {
+// ConfigMapSyncReconciler reconciles a ConfigMapSync object
+type ConfigMapSyncReconciler struct {
 	client.Client
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=mygroup.toni.com,resources=mykinds,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=mygroup.toni.com,resources=mykinds/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=mygroup.toni.com,resources=mykinds/finalizers,verbs=update
+// +kubebuilder:rbac:groups=apps.toni.com,resources=configmapsyncs,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=apps.toni.com,resources=configmapsyncs/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=apps.toni.com,resources=configmapsyncs/finalizers,verbs=update
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 // TODO(user): Modify the Reconcile function to compare the state specified by
-// the MyKind object against the actual cluster state, and then
+// the ConfigMapSync object against the actual cluster state, and then
 // perform operations to make the cluster state reflect the state specified by
 // the user.
 //
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.19.1/pkg/reconcile
-func (r *MyKindReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+func (r *ConfigMapSyncReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
@@ -55,9 +55,9 @@ func (r *MyKindReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 }
 
 // SetupWithManager sets up the controller with the Manager.
-func (r *MyKindReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (r *ConfigMapSyncReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&mygroupv1.MyKind{}).
-		Named("mykind").
+		For(&appsv1.ConfigMapSync{}).
+		Named("configmapsync").
 		Complete(r)
 }

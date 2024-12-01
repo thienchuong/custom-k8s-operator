@@ -23,17 +23,17 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MyKindSpec defines the desired state of MyKind.
-type MyKindSpec struct {
+// ConfigMapSyncSpec defines the desired state of ConfigMapSync.
+type ConfigMapSyncSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MyKind. Edit mykind_types.go to remove/update
+	// Foo is an example field of ConfigMapSync. Edit configmapsync_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
 }
 
-// MyKindStatus defines the observed state of MyKind.
-type MyKindStatus struct {
+// ConfigMapSyncStatus defines the observed state of ConfigMapSync.
+type ConfigMapSyncStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -41,24 +41,24 @@ type MyKindStatus struct {
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 
-// MyKind is the Schema for the mykinds API.
-type MyKind struct {
+// ConfigMapSync is the Schema for the configmapsyncs API.
+type ConfigMapSync struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MyKindSpec   `json:"spec,omitempty"`
-	Status MyKindStatus `json:"status,omitempty"`
+	Spec   ConfigMapSyncSpec   `json:"spec,omitempty"`
+	Status ConfigMapSyncStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// MyKindList contains a list of MyKind.
-type MyKindList struct {
+// ConfigMapSyncList contains a list of ConfigMapSync.
+type ConfigMapSyncList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MyKind `json:"items"`
+	Items           []ConfigMapSync `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&MyKind{}, &MyKindList{})
+	SchemeBuilder.Register(&ConfigMapSync{}, &ConfigMapSyncList{})
 }

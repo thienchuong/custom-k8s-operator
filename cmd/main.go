@@ -35,7 +35,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	mygroupv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
+	appsv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
 	"github.com/thienchuong/custom-k8s-operator/internal/controller"
 	// +kubebuilder:scaffold:imports
 )
@@ -48,7 +48,7 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
-	utilruntime.Must(mygroupv1.AddToScheme(scheme))
+	utilruntime.Must(appsv1.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -142,11 +142,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controller.MyKindReconciler{
+	if err = (&controller.ConfigMapSyncReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "MyKind")
+		setupLog.Error(err, "unable to create controller", "controller", "ConfigMapSync")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

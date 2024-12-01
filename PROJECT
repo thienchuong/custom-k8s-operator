@@ -13,8 +13,8 @@ resources:
     namespaced: true
   controller: true
   domain: toni.com
-  group: mygroup
-  kind: MyKind
+  group: apps
+  kind: ConfigMapSync
   path: github.com/thienchuong/custom-k8s-operator/api/v1
   version: v1
 version: "3"

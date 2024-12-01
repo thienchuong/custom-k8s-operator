@@ -4,20 +4,20 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.4
-  name: mykinds.mygroup.toni.com
+  name: configmapsyncs.apps.toni.com
 spec:
-  group: mygroup.toni.com
+  group: apps.toni.com
   names:
-    kind: MyKind
-    listKind: MyKindList
-    plural: mykinds
-    singular: mykind
+    kind: ConfigMapSync
+    listKind: ConfigMapSyncList
+    plural: configmapsyncs
+    singular: configmapsync
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: MyKind is the Schema for the mykinds API.
+        description: ConfigMapSync is the Schema for the configmapsyncs API.
         properties:
           apiVersion:
             description: |-
@@ -37,15 +37,15 @@ spec:
           metadata:
             type: object
           spec:
-            description: MyKindSpec defines the desired state of MyKind.
+            description: ConfigMapSyncSpec defines the desired state of ConfigMapSync.
             properties:
               foo:
-                description: Foo is an example field of MyKind. Edit mykind_types.go
+                description: Foo is an example field of ConfigMapSync. Edit configmapsync_types.go
                   to remove/update
                 type: string
             type: object
           status:
-            description: MyKindStatus defines the observed state of MyKind.
+            description: ConfigMapSyncStatus defines the observed state of ConfigMapSync.
             type: object
         type: object
     served: true

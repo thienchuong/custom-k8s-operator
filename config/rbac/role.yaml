@@ -5,9 +5,9 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - mygroup.toni.com
+  - apps.toni.com
   resources:
-  - mykinds
+  - configmapsyncs
   verbs:
   - create
   - delete
@@ -17,15 +17,15 @@ rules:
   - update
   - watch
 - apiGroups:
-  - mygroup.toni.com
+  - apps.toni.com
   resources:
-  - mykinds/finalizers
+  - configmapsyncs/finalizers
   verbs:
   - update
 - apiGroups:
-  - mygroup.toni.com
+  - apps.toni.com
   resources:
-  - mykinds/status
+  - configmapsyncs/status
   verbs:
   - get
   - patch

@@ -27,10 +27,10 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	mygroupv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
+	appsv1 "github.com/thienchuong/custom-k8s-operator/api/v1"
 )
 
-var _ = Describe("MyKind Controller", func() {
+var _ = Describe("ConfigMapSync Controller", func() {
 	Context("When reconciling a resource", func() {
 		const resourceName = "test-resource"
 
@@ -40,13 +40,13 @@ var _ = Describe("MyKind Controller", func() {
 			Name:      resourceName,
 			Namespace: "default", // TODO(user):Modify as needed
 		}
-		mykind := &mygroupv1.MyKind{}
+		configmapsync := &appsv1.ConfigMapSync{}
 
 		BeforeEach(func() {
-			By("creating the custom resource for the Kind MyKind")
-			err := k8sClient.Get(ctx, typeNamespacedName, mykind)
+			By("creating the custom resource for the Kind ConfigMapSync")
+			err := k8sClient.Get(ctx, typeNamespacedName, configmapsync)
 			if err != nil && errors.IsNotFound(err) {
-				resource := &mygroupv1.MyKind{
+				resource := &appsv1.ConfigMapSync{
 					ObjectMeta: metav1.ObjectMeta{
 						Name:      resourceName,
 						Namespace: "default",
@@ -59,16 +59,16 @@ var _ = Describe("MyKind Controller", func() {
 
 		AfterEach(func() {
 			// TODO(user): Cleanup logic after each test, like removing the resource instance.
-			resource := &mygroupv1.MyKind{}
+			resource := &appsv1.ConfigMapSync{}
 			err := k8sClient.Get(ctx, typeNamespacedName, resource)
 			Expect(err).NotTo(HaveOccurred())
 
-			By("Cleanup the specific resource instance MyKind")
+			By("Cleanup the specific resource instance ConfigMapSync")
 			Expect(k8sClient.Delete(ctx, resource)).To(Succeed())
 		})
 		It("should successfully reconcile the resource", func() {
 			By("Reconciling the created resource")
-			controllerReconciler := &MyKindReconciler{
+			controllerReconciler := &ConfigMapSyncReconciler{
 				Client: k8sClient,
 				Scheme: k8sClient.Scheme(),
 			}

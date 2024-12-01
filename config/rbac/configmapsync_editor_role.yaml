@@ -1,23 +1,27 @@
-# permissions for end users to view mykinds.
+# permissions for end users to edit configmapsyncs.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: custom-k8s-operator
     app.kubernetes.io/managed-by: kustomize
-  name: mykind-viewer-role
+  name: configmapsync-editor-role
 rules:
 - apiGroups:
-  - mygroup.toni.com
+  - apps.toni.com
   resources:
-  - mykinds
+  - configmapsyncs
   verbs:
+  - create
+  - delete
   - get
   - list
+  - patch
+  - update
   - watch
 - apiGroups:
-  - mygroup.toni.com
+  - apps.toni.com
   resources:
-  - mykinds/status
+  - configmapsyncs/status
   verbs:
   - get
